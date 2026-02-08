@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Languages Hub - Life Document</title>
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="languages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Life<span>Document</span> Languages</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="main.html">Dashboard</a>
+            <a href="blog.html">Blog</a>
+            <a href="languages.html" class="active">Languages</a>
+        </div>
+    </nav>
+
+    <!-- Live Tracker Hero -->
+    <header class="lang-header">
+        <div class="live-tracker">
+            <div class="time-display" id="liveTime">00:00:00</div>
+            <div class="date-display" id="liveDate">Loading Date...</div>
+        </div>
+        <div class="header-stats">
+            <div class="stat-item">
+                <span id="totalLanguages">0</span>
+                <label>Languages</label>
+            </div>
+            <div class="stat-item">
+                <span id="totalPosts">0</span>
+                <label>Daily Posts</label>
+            </div>
+        </div>
+    </header>
+
+    <main class="lang-container">
+        
+        <!-- Top Section: Management & Graphs -->
+        <section class="dashboard-grid">
+            
+            <!-- Left: Add Language -->
+            <div class="card add-lang-card">
+                <h2><i class="fas fa-plus-circle"></i> Add Language</h2>
+                <form id="addLangForm">
+                    <div class="form-group">
+                        <label>Language Name</label>
+                        <input type="text" id="langName" placeholder="e.g. Spanish, Python" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Current Level</label>
+                        <select id="langLevel">
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Fluent">Fluent</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">Start Learning</button>
+                </form>
+                
+                <div class="active-languages" id="activeLanguagesList">
+                    <!-- List injected here -->
+                </div>
+            </div>
+
+            <!-- Right: Graphs -->
+            <div class="card graphs-card">
+                <h2><i class="fas fa-chart-pie"></i> Learning Analytics</h2>
+                
+                <div class="graph-container">
+                    <h3>Current Focus Progress</h3>
+                    <div class="chart-box">
+                        <div class="bar-chart-y" id="currentLangChart">
+                            <!-- Bars injected here -->
+                            <p class="empty-graph">Add posts to see progress</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <h3>Overall Activity</h3>
+                    <div class="chart-box">
+                        <div class="bar-chart-x" id="overallChart">
+                            <!-- Bars injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Post Section -->
+        <section class="post-section">
+            <div class="card create-post-card">
+                <h2><i class="fas fa-pen-fancy"></i> Create Daily Post</h2>
+                <form id="dailyPostForm">
+                    <div class="form-row">
+                        <select id="postLangSelect" required>
+                            <option value="">Select Language...</option>
+                        </select>
+                        <input type="text" id="postTitle" placeholder="Topic of the day..." required>
+                    </div>
+                    
+                    <div class="media-controls">
+                        <div class="voice-recorder">
+                            <button type="button" id="recordBtn" class="btn-record"><i class="fas fa-microphone"></i> Record Voice</button>
+                            <span id="recordStatus">Ready</span>
+                            <audio id="audioPreview" controls style="display:none;"></audio>
+                        </div>
+                        <div class="video-upload">
+                            <label for="videoInput" class="btn-upload"><i class="fas fa-video"></i> Upload Video</label>
+                            <input type="file" id="videoInput" accept="video/*" hidden>
+                            <span id="videoName">No video selected</span>
+                        </div>
+                    </div>
+
+                    <textarea id="postContent" rows="3" placeholder="What did you learn today?"></textarea>
+                    
+                    <button type="submit" class="btn-primary">Share to Public Space</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Public Space / Feed -->
+        <section class="public-space">
+            <div class="section-header">
+                <h2><i class="fas fa-globe-americas"></i> Public Space</h2>
+                <p>My shared journey, voice notes, and videos.</p>
+            </div>
+            
+            <div class="feed-grid" id="feedGrid">
+                <!-- Posts injected here -->
+            </div>
+            
+            <div id="emptyFeed" class="empty-state hidden">
+                <p>No posts yet. Share your first daily update!</p>
+            </div>
+        </section>
+
+    </main>
+    <script src="languages.js"></script>
+</body>
+</html>

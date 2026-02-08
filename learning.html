@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Learning – Life Document</title>
+    <meta name="author" content="Life Document">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="learning.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">Life Document</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="main.html">Dashboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="learning.html" class="active">Learning</a></li>
+                    <li><a href="brainstorm.html">Brainstorm</a></li>
+                    <li><a href="ikigai.html">Ikigai</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="languages.html">Languages</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="learning-page">
+        <section class="learning-hero">
+            <h1>My Learning</h1>
+            <p>Store notes, images, videos & documents. Organize by <strong>Soft Skills</strong> and <strong>Hard Skills</strong>.</p>
+        </section>
+
+        <!-- Add new learning item -->
+        <div class="card add-learning-card">
+            <h2>Add Learning Item</h2>
+            <div class="add-learning-form">
+                <div class="form-row">
+                    <input type="text" id="learningTitle" placeholder="Title (e.g. React Hooks, Public Speaking)" class="input-large">
+                    <select id="learningSkillType" class="input-small">
+                        <option value="soft">Soft Skill</option>
+                        <option value="hard">Hard Skill</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <select id="learningContentType" class="input-small">
+                        <option value="note">📝 Note</option>
+                        <option value="image">🖼️ Image</option>
+                        <option value="video">🎬 Video (URL)</option>
+                        <option value="link">🔗 Document / Link</option>
+                    </select>
+                </div>
+                <div class="form-row content-inputs">
+                    <div id="learningNoteWrap" class="content-field">
+                        <textarea id="learningNoteContent" placeholder="Write your note..." rows="4"></textarea>
+                    </div>
+                    <div id="learningImageWrap" class="content-field hidden">
+                        <label class="file-label">Choose image</label>
+                        <input type="file" id="learningImageFile" accept="image/*">
+                        <div class="image-preview" id="learningImagePreview"></div>
+                    </div>
+                    <div id="learningVideoWrap" class="content-field hidden">
+                        <input type="url" id="learningVideoUrl" placeholder="Paste video URL (YouTube, Vimeo, etc.)" class="input-full">
+                    </div>
+                    <div id="learningLinkWrap" class="content-field hidden">
+                        <input type="url" id="learningLinkUrl" placeholder="Document or resource URL" class="input-full">
+                        <input type="text" id="learningLinkLabel" placeholder="Short description (optional)" class="input-full">
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="addLearningItem()">Save Learning Item</button>
+            </div>
+        </div>
+
+        <!-- Filter: All / Soft Skills / Hard Skills -->
+        <div class="learning-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="soft">Soft Skills</button>
+            <button class="filter-btn" data-filter="hard">Hard Skills</button>
+        </div>
+
+        <!-- Two columns: Soft Skills | Hard Skills -->
+        <div class="learning-grid">
+            <div class="card learning-column" data-skill="soft">
+                <h2>Soft Skills</h2>
+                <div class="learning-items-list" id="softSkillsList"></div>
+            </div>
+            <div class="card learning-column" data-skill="hard">
+                <h2>Hard Skills</h2>
+                <div class="learning-items-list" id="hardSkillsList"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit modal -->
+    <div class="modal" id="editLearningModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLearningModal()">&times;</span>
+            <h2>Edit Learning Item</h2>
+            <input type="text" id="editLearningTitle" placeholder="Title" class="input-large">
+            <select id="editLearningSkillType" class="input-small">
+                <option value="soft">Soft Skill</option>
+                <option value="hard">Hard Skill</option>
+            </select>
+            <textarea id="editLearningContent" placeholder="Content" rows="4" class="input-full"></textarea>
+            <button class="btn-primary" onclick="saveEditLearning()">Save</button>
+        </div>
+    </div>
+
+    <script src="learning.js"></script>
+</body>
+
+</html>

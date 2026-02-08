@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Life Document Blog</title>
+    <meta name="author" content="Life Document">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="blog.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .editor-toolbar {
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .editor-btn {
+            padding: 5px 10px;
+            cursor: pointer;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .rich-editor {
+            border: 1px solid #ddd;
+            border-radius: 0 0 5px 5px;
+            min-height: 300px;
+            padding: 15px;
+            background: white;
+            overflow-y: auto;
+        }
+        .rich-editor img, .rich-editor video {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">Life Document</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="main.html">Dashboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="learning.html">Learning</a></li>
+                    <li><a href="brainstorm.html">Brainstorm</a></li>
+                    <li><a href="ikigai.html">Ikigai</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="">Habit</a></li>
+                    <li><a href="">Journal</a></li>
+                    <li><a href="">Tracker</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="blog-container">
+        <!-- Blog Management Section -->
+        <section class="blog-management">
+            <h1>Blog Management</h1>
+            
+            <!-- Create New Blog Post -->
+            <div class="create-post-section">
+                <h2>Create New Blog Post</h2>
+                <div class="form-group">
+                    <label>Post Title</label>
+                    <input type="text" id="postTitle" placeholder="Enter blog post title..." class="input-full">
+                </div>
+                
+                <div class="form-group">
+                    <label>Category</label>
+                    <div class="category-controls">
+                        <input type="text" id="newCategoryInput" placeholder="Add new category..." class="input-small">
+                        <button class="btn-primary" onclick="addBlogCategory()">Add Category</button>
+                    </div>
+                    <div class="categories-list" id="blogCategories"></div>
+                    <select id="postCategory" class="input-full">
+                        <option value="">Select category...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tags (comma separated)</label>
+                    <input type="text" id="postTags" placeholder="e.g., JavaScript, Web Dev, Tutorial" class="input-full">
+                </div>
+                
+                <div class="form-group">
+                    <label>Post Content</label>
+                    <div class="editor-toolbar">
+                        <button type="button" class="editor-btn" onclick="formatDoc('bold')" title="Bold"><b>B</b></button>
+                        <button type="button" class="editor-btn" onclick="formatDoc('italic')" title="Italic"><i>I</i></button>
+                        <button type="button" class="editor-btn" onclick="formatDoc('underline')" title="Underline"><u>U</u></button>
+                        <select onchange="formatDoc('fontSize', this.value)" class="editor-btn">
+                            <option value="3">Normal Size</option>
+                            <option value="5">Large</option>
+                            <option value="7">Extra Large</option>
+                        </select>
+                        <button type="button" class="editor-btn" onclick="formatDoc('justifyLeft')" title="Align Left">⬅</button>
+                        <button type="button" class="editor-btn" onclick="formatDoc('justifyCenter')" title="Align Center">↔</button>
+                        <button type="button" class="editor-btn" onclick="formatDoc('justifyRight')" title="Align Right">➡</button>
+                        <label class="editor-btn" title="Upload Image/Video">
+                            📷 / 🎬 Upload
+                            <input type="file" id="mediaUpload" hidden onchange="insertMedia(this)">
+                        </label>
+                    </div>
+                    <div id="richEditor" class="rich-editor" contenteditable="true" placeholder="Write your article here..."></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Featured Image URL</label>
+                    <input type="text" id="postImage" placeholder="https://example.com/image.jpg" class="input-full">
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-primary" onclick="publishBlogPost()">Publish Post</button>
+                    <button class="btn-secondary" onclick="saveDraft()">Save Draft</button>
+                    <button class="btn-secondary" onclick="clearForm()">Clear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts List -->
+        <section class="blog-list-section">
+            <h2>All Blog Posts</h2>
+            
+            <!-- Filter & Sort -->
+            <div class="filter-section">
+                <input type="text" id="searchInput" placeholder="Search blog posts..." class="input-full" onkeyup="filterBlogPosts()">
+                <div class="filter-controls">
+                    <select id="filterCategory" class="input-small" onchange="filterBlogPosts()">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select id="filterStatus" class="input-small" onchange="filterBlogPosts()">
+                        <option value="">All Status</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Blog Posts Grid -->
+            <div class="blog-grid" id="blogGrid"></div>
+        </section>
+    </main>
+
+    <!-- Blog Post Detail Modal -->
+    <div class="modal" id="postDetailModal">
+        <div class="modal-content large">
+            <span class="close-btn" onclick="closeModal('postDetailModal')">&times;</span>
+            <article class="blog-post-detail">
+                <img id="detailImage" src="" alt="Featured image" class="detail-image">
+                <h1 id="detailTitle"></h1>
+                <div class="post-meta">
+                    <span id="detailDate"></span>
+                    <span id="detailCategory" class="category-badge"></span>
+                    <span id="detailStatus" class="status-badge"></span>
+                </div>
+                <div class="post-tags" id="detailTags"></div>
+                <div id="detailContent" class="post-content"></div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Edit Post Modal -->
+    <div class="modal" id="editPostModal">
+        <div class="modal-content large">
+            <span class="close-btn" onclick="closeModal('editPostModal')">&times;</span>
+            <h2>Edit Blog Post</h2>
+            <div class="form-group">
+                <label>Post Title</label>
+                <input type="text" id="editPostTitle" class="input-full">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select id="editPostCategory" class="input-full">
+                    <option value="">Select category...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tags</label>
+                <input type="text" id="editPostTags" class="input-full">
+            </div>
+            <div class="form-group">
+                <label>Content</label>
+                <textarea id="editPostContent" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Featured Image URL</label>
+                <input type="text" id="editPostImage" class="input-full">
+            </div>
+            <div class="button-group">
+                <button class="btn-primary" onclick="saveEditPost()">Save Changes</button>
+                <button class="btn-secondary" onclick="closeModal('editPostModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="blog.js"></script>
+</body>
+
+</html>

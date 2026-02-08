@@ -1,0 +1,306 @@
+/* Books page – reading list, log, live day, calendar */
+
+.books-theme {
+    background: linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%);
+    min-height: 100vh;
+    color: #1a1a2e;
+}
+
+.books-header {
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+.books-header .logo-text {
+    background: linear-gradient(135deg, #1a5f7a 0%, #159895 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.books-header nav ul li a:hover,
+.books-header nav ul li a.active {
+    color: #159895;
+}
+
+.books-page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.books-hero {
+    text-align: center;
+    padding: 16px 0;
+}
+
+.books-hero h1 {
+    font-size: 28px;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+}
+
+.books-hero p {
+    color: #4a5568;
+    font-size: 16px;
+}
+
+/* Daily Reading Tracker */
+.books-tracker h2 {
+    margin-bottom: 20px;
+}
+
+.live-day {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a5f7a;
+    margin-bottom: 12px;
+}
+
+.reading-stats {
+    font-size: 14px;
+    color: #4a5568;
+    margin-bottom: 20px;
+}
+
+.books-calendar-wrap {
+    margin-top: 16px;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.calendar-header h3 {
+    font-size: 18px;
+    color: #1a1a2e;
+}
+
+.btn-cal {
+    padding: 8px 14px;
+    border: 1px solid #cbd5e0;
+    background: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #1a5f7a;
+    transition: background 0.2s;
+}
+
+.btn-cal:hover {
+    background: #e8eef5;
+}
+
+.books-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.cal-day-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #718096;
+    text-align: center;
+    padding: 4px 0;
+}
+
+.cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 8px;
+    background: #e8eef5;
+    color: #4a5568;
+}
+
+.cal-day.other-month {
+    color: #a0aec0;
+    background: #f7fafc;
+}
+
+.cal-day.today {
+    background: #1a5f7a;
+    color: #fff;
+}
+
+.cal-day.read {
+    background: #159895;
+    color: #fff;
+}
+
+.cal-day.today.read {
+    background: #0d4f4d;
+    color: #fff;
+}
+
+/* Add book */
+.books-add-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.books-add-form .input-large {
+    flex: 1;
+    min-width: 200px;
+}
+
+.books-add-form .input-small {
+    width: 160px;
+}
+
+.books-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.book-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-left: 4px solid #1a5f7a;
+}
+
+.book-item .book-info strong {
+    display: block;
+    color: #1a1a2e;
+}
+
+.book-item .book-info span {
+    font-size: 13px;
+    color: #718096;
+}
+
+.book-item .book-actions button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    background: #e8eef5;
+    color: #1a5f7a;
+}
+
+.book-item .book-actions button:hover {
+    background: #cbd5e0;
+}
+
+.book-item .book-actions button.delete {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.book-item .book-actions button.delete:hover {
+    background: #feb2b2;
+}
+
+/* Log reading */
+.books-log-form .form-row {
+    margin-bottom: 16px;
+}
+
+.books-log-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 6px;
+}
+
+.books-log-form .input-full,
+.books-log-form .input-large,
+.books-log-form .input-small {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.books-log-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.books-log-form .btn-primary {
+    margin-top: 8px;
+}
+
+.section-hint {
+    font-size: 14px;
+    color: #718096;
+    margin-bottom: 16px;
+}
+
+/* Reading sessions list */
+.reading-sessions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.session-item {
+    padding: 16px;
+    background: #f7fafc;
+    border-radius: 10px;
+    border-left: 4px solid #159895;
+}
+
+.session-item .session-book {
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+.session-item .session-meta {
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 8px;
+}
+
+.session-item .session-learned {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2d3748;
+    white-space: pre-wrap;
+}
+
+.empty-sessions {
+    text-align: center;
+    padding: 24px;
+    color: #718096;
+    font-size: 15px;
+}
+
+.empty-books {
+    padding: 16px;
+    color: #718096;
+    font-size: 14px;
+}
+
+@media (max-width: 640px) {
+    .books-add-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .books-add-form .input-small {
+        width: 100%;
+    }
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Goals & Roadmap - Life Document</title>
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="goals.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Life<span>Document</span> Goals</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="main.html">Dashboard</a>
+            <a href="blog.html">Blog</a>
+            <a href="projects.html">Projects</a>
+            <a href="goals.html" class="active">Goals</a>
+        </div>
+    </nav>
+
+    <!-- Live Time & Stats Header -->
+    <header class="goals-header">
+        <div class="live-stats-container">
+            <div class="stat-card time-card">
+                <div class="icon"><i class="far fa-clock"></i></div>
+                <div class="stat-info">
+                    <h2 id="liveTime">00:00:00</h2>
+                    <p id="currentDate">Loading...</p>
+                </div>
+            </div>
+            <div class="stat-card year-card">
+                <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+                <div class="stat-info">
+                    <h2><span id="daysPassed">0</span> / 365</h2>
+                    <p>Days Passed in <span id="currentYear">2026</span></p>
+                    <div class="progress-bar"><div class="progress-fill" id="yearProgress"></div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="goals-container">
+        
+        <!-- Roadmap Section (Long Term) -->
+        <section class="roadmap-section">
+            <h2 class="section-title"><i class="fas fa-map-signs"></i> My Roadmap</h2>
+            <div class="roadmap-grid">
+                <div class="roadmap-card long-term">
+                    <div class="roadmap-header">
+                        <h3>10 Year Vision (3650 Days)</h3>
+                        <button class="btn-lock" onclick="archivePlan('vision10y')"><i class="fas fa-lock"></i> Archive</button>
+                    </div>
+                    <textarea id="vision10y" placeholder="Where do you want to be in 10 years? Dream big..."></textarea>
+                </div>
+                <div class="roadmap-card medium-term">
+                    <div class="roadmap-header">
+                        <h3>1 Year Plan (365 Days)</h3>
+                        <button class="btn-lock" onclick="archivePlan('vision1y')"><i class="fas fa-lock"></i> Archive</button>
+                    </div>
+                    <textarea id="vision1y" placeholder="What are your main objectives for this year?"></textarea>
+                </div>
+                <div class="roadmap-card short-term">
+                    <div class="roadmap-header">
+                        <h3>90 Day Sprint</h3>
+                        <button class="btn-lock" onclick="archivePlan('vision90d')"><i class="fas fa-lock"></i> Archive</button>
+                    </div>
+                    <textarea id="vision90d" placeholder="What will you achieve in the next 3 months?"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planning Section (Periodic) -->
+        <section class="planning-section">
+            <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Periodic Planning</h2>
+            <div class="planning-grid">
+                <div class="plan-box">
+                    <div class="plan-header">
+                        <label>Monthly Focus</label>
+                        <button class="btn-lock" onclick="archivePlan('monthly')"><i class="fas fa-lock"></i> Complete & Archive</button>
+                    </div>
+                    <textarea id="planMonthly" placeholder="Key focus for this month..."></textarea>
+                </div>
+                <div class="plan-box">
+                    <div class="plan-header">
+                        <label>Weekly Focus</label>
+                        <button class="btn-lock" onclick="archivePlan('weekly')"><i class="fas fa-lock"></i> Complete & Archive</button>
+                    </div>
+                    <textarea id="planWeekly" placeholder="Priorities for this week..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Goals Tracker -->
+        <section class="goals-tracker-section">
+            <div class="tracker-header">
+                <h2 class="section-title"><i class="fas fa-bullseye"></i> Active Goals Tracker</h2>
+                <button class="btn-add" onclick="openGoalModal()"><i class="fas fa-plus"></i> New Goal</button>
+            </div>
+            
+            <div class="goals-list" id="goalsList">
+                <!-- Goals injected here via JS -->
+            </div>
+            
+            <div id="emptyGoals" class="empty-state hidden">
+                <p>No active goals. Start by adding one!</p>
+            </div>
+        </section>
+
+        <!-- Review Section -->
+        <section class="review-section">
+            <h2 class="section-title"><i class="fas fa-history"></i> Review & History</h2>
+            <div class="review-grid" id="reviewList"></div>
+        </section>
+
+    </main>
+
+    <!-- Add Goal Modal -->
+    <div class="modal" id="goalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Goal</h2>
+                <button class="close-btn" onclick="closeGoalModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="goalForm">
+                    <div class="form-group">
+                        <label>Goal Title</label>
+                        <input type="text" id="gTitle" required placeholder="e.g., Read 20 Pages Daily">
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date" id="gStartDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Target Date (Optional)</label>
+                        <input type="date" id="gDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Description / Motivation</label>
+                        <textarea id="gDesc" rows="3" placeholder="Why is this goal important?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Icon (Emoji)</label>
+                        <input type="text" id="gIcon" value="🎯" class="emoji-input">
+                    </div>
+                    <button type="submit" class="btn-primary full-width">Start Tracking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="goals.js"></script>
+</body>
+</html>

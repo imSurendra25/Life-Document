@@ -1,0 +1,362 @@
+:root {
+    --primary: #4cc9f0;
+    --primary-dark: #4361ee;
+    --secondary: #7209b7;
+    --bg: #f0f2f5;
+    --card-bg: #ffffff;
+    --text: #2b2d42;
+    --text-light: #8d99ae;
+    --border: #e9ecef;
+    --success: #2ec4b6;
+    --gradient: linear-gradient(135deg, #4cc9f0, #4361ee);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    padding-bottom: 50px;
+}
+
+/* Navbar */
+.navbar {
+    background: white;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.logo span { color: var(--primary-dark); }
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    margin-left: 2rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.nav-links a.active, .nav-links a:hover { color: var(--primary-dark); }
+
+/* Header Stats */
+.goals-header {
+    padding: 2rem 5%;
+    background: var(--gradient);
+    color: white;
+}
+
+.live-stats-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.stat-card .icon {
+    font-size: 2.5rem;
+    opacity: 0.8;
+}
+
+.stat-info h2 { font-size: 2rem; margin-bottom: 5px; }
+.stat-info p { font-size: 0.9rem; opacity: 0.9; }
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 3px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: white;
+    width: 0%;
+    transition: width 1s ease;
+}
+
+/* Main Container */
+.goals-container {
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Roadmap Grid */
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.roadmap-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.roadmap-card.long-term { border-color: var(--secondary); }
+.roadmap-card.short-term { border-color: var(--success); }
+
+.roadmap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.roadmap-header h3 { font-size: 1.1rem; margin-bottom: 0; }
+
+.roadmap-card textarea, .plan-box textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    resize: vertical;
+    font-size: 0.95rem;
+    background: #fafafa;
+    transition: 0.3s;
+}
+
+.roadmap-card textarea:focus, .plan-box textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.1);
+}
+
+/* Planning Section */
+.planning-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.plan-box {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.plan-header label {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.btn-lock {
+    background: none;
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    transition: 0.3s;
+}
+
+.btn-lock:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Goals Tracker */
+.tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn-add {
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+.btn-add:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3); }
+
+.goals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.goal-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    position: relative;
+    border: 1px solid var(--border);
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.goal-icon { font-size: 2rem; background: #f8f9fa; padding: 10px; border-radius: 50%; }
+.goal-actions button { background: none; border: none; color: #ff4757; cursor: pointer; font-size: 1rem; }
+
+.goal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
+.goal-desc { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem; }
+
+.goal-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.btn-checkin {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    background: var(--border);
+    color: var(--text-light);
+}
+
+.btn-checkin.done {
+    background: var(--success);
+    color: white;
+}
+
+.btn-checkin:hover:not(.done) { background: #dde1e6; }
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: 0.3s;
+    z-index: 1000;
+}
+.modal.active { opacity: 1; pointer-events: all; }
+.modal-content {
+    background: white; padding: 2rem; border-radius: 12px;
+    width: 400px; max-width: 90%;
+}
+.modal-header { display: flex; justify-content: space-between; margin-bottom: 1.5rem; }
+.close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-group input, .form-group textarea {
+    width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px;
+}
+.full-width { width: 100%; background: var(--primary-dark); color: white; padding: 10px; border: none; border-radius: 6px; cursor: pointer; }
+
+@media (max-width: 768px) {
+    .planning-grid { grid-template-columns: 1fr; }
+    .live-stats-container { flex-direction: column; }
+}
+
+.hidden { display: none; }
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Review Section */
+.review-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.review-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--text-light);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.review-date {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.review-content {
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+}

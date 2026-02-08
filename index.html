@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Life Document - Your Productivity Hub</title>
+    <meta name="author" content="Life Document">
+    <meta name="keyword" content="Productivity, Habit Tracking, Blogging, Journaling, Learning">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Global Responsive Fixes */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Amazing Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 5rem 1.5rem;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .quote-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .quote-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .quote-author {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 15rem;
+            opacity: 0.05;
+            font-family: serif;
+            line-height: 1;
+        }
+        /* Timer Section */
+        .timer-section {
+            background: #f8f9fa;
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+        .timer-headline {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #c0392b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .timer-sub {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        .countdown-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .time-unit {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            min-width: 140px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .time-unit:hover {
+            transform: translateY(-5px);
+        }
+        .time-unit::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .time-value {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #333;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .time-label {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .time-unit {
+                min-width: 100px;
+                padding: 1rem;
+            }
+            .time-value {
+                font-size: 2.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .quote-text {
+                font-size: 1.5rem;
+            }
+            .quote-section::before {
+                font-size: 8rem;
+            }
+            .time-unit {
+                min-width: 70px;
+                padding: 0.5rem;
+                flex: 1 1 40%;
+            }
+            .time-value {
+                font-size: 1.8rem;
+            }
+            .time-label {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">Life Document</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="main.html">Dashboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="journey.html">Journey</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Welcome to Life Document</h1>
+                    <p>Your all-in-one platform for building better habits, learning new skills, sharing knowledge, and tracking your personal growth journey.</p>
+                    <a href="main.html" class="btn">Start Dashboard</a>
+                </div>
+                <div class="hero-image">
+                    <img src="men.jpg" alt="Hero Image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Section -->
+        <section class="blog-section">
+            <div class="blog-container">
+                <h2>Latest Blog Posts</h2>
+                <p class="section-subtitle">Insights and stories from our community</p>
+                <div class="blog-grid" id="blogGrid">
+                    <!-- Blog posts will be dynamically loaded here -->
+                    <div class="no-posts">
+                        <p>No blog posts yet. <a href="blog.html">Create one now!</a></p>
+                    </div>
+                </div>
+                <div class="view-all-blog">
+                    <a href="blog.html" class="btn-secondary">View All Blog Posts</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inspirational Quote Section -->
+        <section class="quote-section">
+            <div class="quote-wrapper">
+                <p class="quote-text">"Your future is created by what you do today, not tomorrow."</p>
+                <p class="quote-author">— Robert Kiyosaki</p>
+            </div>
+        </section>
+
+        <!-- Timer Section -->
+        <section class="timer-section">
+            <h2 class="timer-headline">Your time is running...</h2>
+            <p class="timer-sub">Time remaining in <span id="currentYearSpan">2026</span> to achieve your goals.</p>
+            <div class="countdown-wrapper">
+                <div class="time-unit">
+                    <span class="time-value" id="t-days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="t-hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="t-minutes">00</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="t-seconds">00</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social & Contact Section -->
+        <section class="social-section">
+            <div class="social-container">
+                <h2>Connect With Us</h2>
+                <p class="section-subtitle">Follow our social media and stay updated</p>
+                <div class="social-links">
+                    <a href="https://facebook.com/codenibbler" class="social-link facebook" title="Facebook">
+                        <span class="social-icon">f</span>
+                    </a>
+                    <a href="https://twitter.com/codenibbler" class="social-link twitter" title="Twitter">
+                        <span class="social-icon">𝕏</span>
+                    </a>
+                    <a href="https://instagram.com/codenibbler" class="social-link instagram" title="Instagram">
+                        <span class="social-icon">📷</span>
+                    </a>
+                    <a href="https://linkedin.com/company/codenibbler" class="social-link linkedin" title="LinkedIn">
+                        <span class="social-icon">in</span>
+                    </a>
+                    <a href="https://youtube.com/codenibbler" class="social-link youtube" title="YouTube">
+                        <span class="social-icon">▶</span>
+                    </a>
+                    <a href="https://github.com/codenibbler" class="social-link github" title="GitHub">
+                        <span class="social-icon">⚙</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Life Document</h3>
+                <p>Your personal productivity hub for learning, habit tracking, blogging, and journaling. Build better habits, grow continuously, and share your knowledge with the world.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="main.html">Dashboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#features">Features</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Get in Touch</h3>
+                <p class="footer-hint">Messages will be sent to your email so you can reply from your inbox.</p>
+                <!-- Replace your.email@gmail.com with your real Gmail in data-contact-email and in Contact Info links below -->
+                <form class="contact-form" id="contactForm" data-contact-email="itsurendram98@gmail.com">
+                    <input type="email" name="sender" placeholder="Your email" required>
+                    <textarea name="message" placeholder="Your message" rows="3" required></textarea>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><strong>📧 Email (receive messages here):</strong><br><a href="mailto:your.email@gmail.com" id="footerEmail">your.email@gmail.com</a></p>
+                <p><strong>💬 Same inbox for support:</strong><br><a href="mailto:your.email@gmail.com">your.email@gmail.com</a></p>
+                <p><strong>☎️ Phone:</strong><br>+1 (555) 123-4567</p>
+                <div class="social-footer">
+                    <a href="https://facebook.com/codenibbler" class="social-badge">Facebook</a>
+                    <a href="https://twitter.com/codenibbler" class="social-badge">Twitter</a>
+                    <a href="https://instagram.com/codenibbler" class="social-badge">Instagram</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Life Document. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script src="landing-script.js"></script>
+    <script>
+        // Script to load Latest Blog Posts from LocalStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('blogGrid');
+            const blogData = JSON.parse(localStorage.getItem('codenibbler-blog') || '{}');
+            const posts = blogData.posts || [];
+            const publishedPosts = posts.filter(p => p.status === 'published');
+
+            if (publishedPosts.length > 0) {
+                grid.innerHTML = publishedPosts.slice(0, 3).map(post => {
+                    // Create a snippet from HTML content
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = post.content;
+                    const textSnippet = tempDiv.textContent || tempDiv.innerText || '';
+                    
+                    return `
+                    <div class="blog-card" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+                        ${post.image ? `<div style="height: 200px; overflow: hidden;"><img src="${post.image}" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover;"></div>` : ''}
+                        <div style="padding: 1.5rem; flex: 1; display: flex; flex-direction: column;">
+                            <span style="color: #007bff; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem;">${post.category || 'Blog'}</span>
+                            <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; color: #333;">${post.title}</h3>
+                            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; flex: 1;">${textSnippet.substring(0, 100)}...</p>
+                            <a href="blog.html?id=${post.id}" style="color: #007bff; text-decoration: none; font-weight: 600;">Read Article &rarr;</a>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+                
+                // Add grid styling if not present
+                grid.style.display = 'grid';
+                grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+                grid.style.gap = '2rem';
+            }
+        });
+
+        // Timer Logic
+        function startYearTimer() {
+            const daysEl = document.getElementById('t-days');
+            const hoursEl = document.getElementById('t-hours');
+            const minutesEl = document.getElementById('t-minutes');
+            const secondsEl = document.getElementById('t-seconds');
+            const yearSpan = document.getElementById('currentYearSpan');
+
+            function update() {
+                const now = new Date();
+                const currentYear = now.getFullYear();
+                const nextYear = currentYear + 1;
+                const target = new Date(`January 1, ${nextYear} 00:00:00`);
+                const diff = target - now;
+
+                if (yearSpan) yearSpan.textContent = currentYear;
+
+                if (diff > 0) {
+                    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    if(daysEl) daysEl.textContent = d < 10 ? '0' + d : d;
+                    if(hoursEl) hoursEl.textContent = h < 10 ? '0' + h : h;
+                    if(minutesEl) minutesEl.textContent = m < 10 ? '0' + m : m;
+                    if(secondsEl) secondsEl.textContent = s < 10 ? '0' + s : s;
+                }
+            }
+            
+            update();
+            setInterval(update, 1000);
+        }
+        startYearTimer();
+    </script>
+
+</body>
+
+</html>

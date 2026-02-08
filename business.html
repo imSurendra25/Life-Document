@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Business Hub - Life Document</title>
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="business.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Life<span>Document</span> Business</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="main.html">Dashboard</a>
+            <a href="blog.html">Blog</a>
+            <a href="business.html" class="active">Business</a>
+        </div>
+    </nav>
+
+    <!-- Header Stats -->
+    <header class="business-header">
+        <div class="header-content">
+            <h1>Business <span class="highlight">Command Center</span></h1>
+            <p>Plan, Track, and Grow your ventures.</p>
+            <div class="live-meta">
+                <span id="liveClock">00:00:00</span>
+                <span id="liveDate">Loading...</span>
+            </div>
+        </div>
+        <div class="header-stats">
+            <div class="stat-box">
+                <span id="totalRevenue">$0</span>
+                <label>Total Revenue</label>
+            </div>
+            <div class="stat-box">
+                <span id="totalProfit" class="text-success">$0</span>
+                <label>Net Profit</label>
+            </div>
+            <div class="stat-box">
+                <span id="totalClients">0</span>
+                <label>Active Clients</label>
+            </div>
+        </div>
+    </header>
+
+    <main class="business-container">
+        
+        <!-- Top Row: Year Overview & Quick Actions -->
+        <section class="dashboard-top">
+            <div class="card calendar-card">
+                <h3><i class="fas fa-calendar-alt"></i> Year Overview</h3>
+                <div class="year-progress-bar">
+                    <div class="progress-fill" id="yearProgress"></div>
+                </div>
+                <p class="year-text"><span id="daysLeft">0</span> days left to achieve your goals in <span id="currentYear">2026</span>.</p>
+            </div>
+            <div class="card actions-card">
+                <h3>Quick Actions</h3>
+                <div class="action-buttons">
+                    <button class="btn-action" onclick="openBusinessModal()"><i class="fas fa-briefcase"></i> New Business</button>
+                    <button class="btn-action" onclick="openClientModal()"><i class="fas fa-users"></i> Add Client</button>
+                    <button class="btn-action" onclick="openTransactionModal()"><i class="fas fa-coins"></i> Log Finance</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            
+            <!-- Left Column: Business Portfolio -->
+            <section class="portfolio-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-building"></i> Business Portfolio</h2>
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="filterBusinesses('all')">All</button>
+                        <button class="tab-btn" onclick="filterBusinesses('active')">Active</button>
+                        <button class="tab-btn" onclick="filterBusinesses('idea')">Ideas</button>
+                    </div>
+                </div>
+                <div class="business-list" id="businessList">
+                    <!-- Business Cards Injected Here -->
+                </div>
+            </section>
+
+            <!-- Right Column: Finance & Clients -->
+            <aside class="sidebar-section">
+                
+                <!-- Financial Analysis -->
+                <div class="card finance-card">
+                    <h2><i class="fas fa-chart-line"></i> Financial Analysis</h2>
+                    <div class="finance-summary">
+                        <div class="fin-row">
+                            <span>Investment</span>
+                            <span id="sumInvest">$0</span>
+                        </div>
+                        <div class="fin-row">
+                            <span>Expenses</span>
+                            <span id="sumExpense" class="text-danger">$0</span>
+                        </div>
+                        <div class="fin-row total">
+                            <span>Revenue</span>
+                            <span id="sumRevenue" class="text-success">$0</span>
+                        </div>
+                    </div>
+                    <div class="transaction-list" id="transactionList">
+                        <!-- Recent transactions -->
+                    </div>
+                </div>
+
+                <!-- Client Database -->
+                <div class="card clients-card">
+                    <h2><i class="fas fa-address-book"></i> Client Database</h2>
+                    <div class="client-list" id="clientList">
+                        <!-- Clients injected here -->
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+
+    </main>
+
+    <!-- Modals -->
+
+    <!-- Add/Edit Business Modal -->
+    <div class="modal" id="businessModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Manage Business</h2>
+                <button class="close-btn" onclick="closeModal('businessModal')">&times;</button>
+            </div>
+            <form id="businessForm">
+                <input type="hidden" id="bId">
+                <div class="form-row">
+                    <input type="text" id="bName" placeholder="Business Name / Idea Title" required class="input-lg">
+                    <select id="bType" required>
+                        <option value="Service">Service</option>
+                        <option value="Product">Product</option>
+                        <option value="SaaS">SaaS</option>
+                        <option value="Content">Content</option>
+                        <option value="Retail">Retail</option>
+                    </select>
+                    <select id="bStatus">
+                        <option value="Idea">Idea Phase</option>
+                        <option value="Planning">Planning</option>
+                        <option value="Active">Active</option>
+                        <option value="Scaled">Scaled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Distribution & Logistics</label>
+                    <textarea id="bDist" rows="2" placeholder="How will you reach customers? (e.g., Social Media, SEO, Direct Sales)"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats)</label>
+                    <textarea id="bSwot" rows="3" placeholder="Quick analysis of the business potential..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Save Business</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div class="modal" id="transactionModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('transactionModal')">&times;</span>
+            <h2>Log Finance</h2>
+            <form id="transactionForm">
+                <select id="tBusiness" required><option>Select Business...</option></select>
+                <select id="tType" required>
+                    <option value="Revenue">Revenue (Income)</option>
+                    <option value="Expense">Expense (Cost)</option>
+                    <option value="Investment">Investment (Funding)</option>
+                </select>
+                <input type="number" id="tAmount" placeholder="Amount ($)" required>
+                <input type="text" id="tDesc" placeholder="Description (e.g., Hosting, Client Payment)">
+                <input type="date" id="tDate" required>
+                <button type="submit" class="btn-primary full-width">Add Record</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Client Modal (Simplified for brevity, logic handled in JS) -->
+    <!-- Dynamic creation in JS or similar structure to above -->
+
+    <script src="business.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Books – My Reading List & Tracker | Life Document</title>
+    <meta name="author" content="Life Document">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="books.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body class="books-theme">
+    <header class="books-header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">Life Document</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="main.html">Dashboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="learning.html">Learning</a></li>
+                    <li><a href="brainstorm.html">Brainstorm</a></li>
+                    <li><a href="ikigai.html">Ikigai</a></li>
+                    <li><a href="books.html" class="active">Books</a></li>
+                    <li><a href="">Projects</a></li>
+                    <li><a href="">Goals</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="books-page">
+        <section class="books-hero">
+            <h1>My Books</h1>
+            <p>Add your book list, log what you read with date & time, chapter & learnings. Track daily reading with live day and calendar.</p>
+        </section>
+
+        <!-- Live day + calendar -->
+        <section class="books-tracker card">
+            <h2>Daily Reading Tracker</h2>
+            <div class="live-day" id="liveDay"></div>
+            <div class="reading-stats" id="readingStats"></div>
+            <div class="books-calendar-wrap">
+                <div class="calendar-header">
+                    <button type="button" class="btn-cal" id="calPrev">←</button>
+                    <h3 id="calMonthYear"></h3>
+                    <button type="button" class="btn-cal" id="calNext">→</button>
+                </div>
+                <div class="books-calendar" id="booksCalendar"></div>
+            </div>
+        </section>
+
+        <!-- Add book -->
+        <section class="card books-add-section">
+            <h2>Add Book to List</h2>
+            <div class="books-add-form">
+                <input type="text" id="bookTitle" placeholder="Book title" class="input-large">
+                <input type="text" id="bookAuthor" placeholder="Author (optional)" class="input-small">
+                <button type="button" class="btn-primary" id="btnAddBook">Add Book</button>
+            </div>
+            <div class="books-list" id="booksList"></div>
+        </section>
+
+        <!-- Log reading: current book, date/time, chapter, what I learned -->
+        <section class="card books-log-section">
+            <h2>Log Reading</h2>
+            <p class="section-hint">Record when you read, which chapter, and what you learned.</p>
+            <div class="books-log-form">
+                <div class="form-row">
+                    <label>Book</label>
+                    <select id="logBook" class="input-large">
+                        <option value="">Select a book...</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>Date & time</label>
+                    <input type="datetime-local" id="logDateTime" class="input-small">
+                </div>
+                <div class="form-row">
+                    <label>Chapter (or page/section)</label>
+                    <input type="text" id="logChapter" placeholder="e.g. Chapter 5, or pages 42–58" class="input-large">
+                </div>
+                <div class="form-row">
+                    <label>What I learned</label>
+                    <textarea id="logLearned" placeholder="Write what you learned from this reading..." rows="4" class="input-full"></textarea>
+                </div>
+                <button type="button" class="btn-primary" id="btnLogReading">Save Reading Log</button>
+            </div>
+        </section>
+
+        <!-- Recent reading sessions -->
+        <section class="card books-sessions-section">
+            <h2>Recent Reading</h2>
+            <div class="reading-sessions-list" id="readingSessionsList"></div>
+        </section>
+    </main>
+
+    <script src="books.js"></script>
+</body>
+
+</html>

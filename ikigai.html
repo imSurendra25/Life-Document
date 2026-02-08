@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ikigai – Discover Your Reason for Being | Life Document</title>
+    <meta name="author" content="Life Document">
+    <meta name="description" content="Discover your Ikigai: where what you love, what you're good at, what the world needs, and what you can be paid for come together.">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="ikigai.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body class="ikigai-theme">
+    <header class="ikigai-header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">Life Document</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="main.html">Dashboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="learning.html">Learning</a></li>
+                    <li><a href="brainstorm.html">Brainstorm</a></li>
+                    <li><a href="ikigai.html" class="active">Ikigai</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="ikigai-page">
+        <!-- Hero: Full description -->
+        <section class="ikigai-hero">
+            <h1 class="ikigai-title">Discover Your Ikigai</h1>
+            <p class="ikigai-subtitle">Your Reason for Being</p>
+            <div class="ikigai-intro">
+                <p>This page is designed to help you discover your true <strong>Ikigai</strong>: the sweet spot where what you love, what you are good at, what the world needs, and what you can be paid for come together.</p>
+                <p>Many people feel lost, confused, or stuck—working hard but without purpose. Ikigai is a Japanese life philosophy that helps you find clarity, direction, and meaning in both life and career. This interactive experience guides you step by step through self-reflection, helping you understand yourself on a deeper level.</p>
+                <p><strong>On this page, you will:</strong></p>
+                <ul>
+                    <li>Explore your passions and interests</li>
+                    <li>Identify your natural skills and strengths</li>
+                    <li>Understand how you can create value for others</li>
+                    <li>Discover paths that align purpose with income</li>
+                </ul>
+                <p>This is not a test with right or wrong answers. It is a personal discovery journey. Take your time, be honest with yourself, and reflect deeply. The more truth you bring, the clearer your Ikigai will become.</p>
+                <p>By the end, you won't just have answers—you'll have clarity, direction, and a renewed sense of purpose.</p>
+                <blockquote class="ikigai-quote">
+                    Your Ikigai is already within you.<br>
+                    This page simply helps you uncover it.
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Detailed framework: guided questions to find Ikigai -->
+        <section class="ikigai-discovery ikigai-detail-form">
+            <h2>Detailed Framework — Find Your Ikigai Step by Step</h2>
+            <p class="discovery-hint">Answer these guided questions to clarify each part of your Ikigai. Your answers are saved automatically.</p>
+
+            <div class="detail-quadrants">
+                <div class="detail-quadrant quadrant-love" data-quadrant="love">
+                    <h3><span class="quadrant-icon">❤️</span> What You Love</h3>
+                    <div class="detail-questions">
+                        <label>What did you love doing as a child (hobbies, play, curiosity)?</label>
+                        <textarea id="detailLove1" rows="2" placeholder="e.g. drawing, helping others, building things..."></textarea>
+                        <label>What could you do for hours without getting paid?</label>
+                        <textarea id="detailLove2" rows="2" placeholder="e.g. teaching, writing, solving puzzles..."></textarea>
+                        <label>What topics do you read, watch, or learn about most?</label>
+                        <textarea id="detailLove3" rows="2" placeholder="e.g. psychology, tech, nature..."></textarea>
+                        <label>Summary: What you love (one sentence or list)</label>
+                        <textarea id="ikigaiLove" rows="3" placeholder="Combine the above into your 'What I Love' statement."></textarea>
+                    </div>
+                </div>
+                <div class="detail-quadrant quadrant-good" data-quadrant="good">
+                    <h3><span class="quadrant-icon">✨</span> What You're Good At</h3>
+                    <div class="detail-questions">
+                        <label>What do people often compliment you on or ask you for?</label>
+                        <textarea id="detailGood1" rows="2" placeholder="e.g. listening, organizing, explaining..."></textarea>
+                        <label>What have you been trained in or have experience in?</label>
+                        <textarea id="detailGood2" rows="2" placeholder="e.g. coding, teaching, design..."></textarea>
+                        <label>What do you do better than most people around you?</label>
+                        <textarea id="detailGood3" rows="2" placeholder="e.g. seeing patterns, calming others..."></textarea>
+                        <label>Summary: What you're good at (one sentence or list)</label>
+                        <textarea id="ikigaiGood" rows="3" placeholder="Combine the above into your 'What I'm Good At' statement."></textarea>
+                    </div>
+                </div>
+                <div class="detail-quadrant quadrant-world" data-quadrant="world">
+                    <h3><span class="quadrant-icon">🌍</span> What the World Needs</h3>
+                    <div class="detail-questions">
+                        <label>What problems in the world make you angry or sad?</label>
+                        <textarea id="detailWorld1" rows="2" placeholder="e.g. inequality, loneliness, waste..."></textarea>
+                        <label>Who do you most want to help or serve?</label>
+                        <textarea id="detailWorld2" rows="2" placeholder="e.g. young people, elders, animals..."></textarea>
+                        <label>What cause would you fight for even without pay?</label>
+                        <textarea id="detailWorld3" rows="2" placeholder="e.g. education, health, environment..."></textarea>
+                        <label>Summary: What the world needs that you care about</label>
+                        <textarea id="ikigaiWorld" rows="3" placeholder="Combine the above into your 'What the World Needs' statement."></textarea>
+                    </div>
+                </div>
+                <div class="detail-quadrant quadrant-paid" data-quadrant="paid">
+                    <h3><span class="quadrant-icon">💼</span> What You Can Be Paid For</h3>
+                    <div class="detail-questions">
+                        <label>What have you been paid for before (jobs, gigs, skills)?</label>
+                        <textarea id="detailPaid1" rows="2" placeholder="e.g. teaching, writing, consulting..."></textarea>
+                        <label>What would someone pay you for today, using your strengths?</label>
+                        <textarea id="detailPaid2" rows="2" placeholder="e.g. coaching, design, analysis..."></textarea>
+                        <label>What roles or businesses combine your love, skills, and mission?</label>
+                        <textarea id="detailPaid3" rows="2" placeholder="e.g. founder, consultant, creator..."></textarea>
+                        <label>Summary: What you can be paid for (aligned with purpose)</label>
+                        <textarea id="ikigaiPaid" rows="3" placeholder="Combine the above into your 'What I Can Be Paid For' statement."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ikigai-actions">
+                <button type="button" class="btn-save" id="btnSave">Save My Reflections</button>
+                <button type="button" class="btn-summary" id="btnSummary">See My Ikigai Summary</button>
+            </div>
+        </section>
+
+        <!-- Ikigai Dashboard: put everything here, discover yourself -->
+        <section class="ikigai-dashboard" id="ikigaiDashboard">
+            <h2>My Ikigai Dashboard</h2>
+            <p class="dashboard-tagline">Your life discovery — everything in one place. Find and refine your reason for being.</p>
+            <div class="dashboard-progress" id="dashboardProgress"></div>
+            <div class="dashboard-grid" id="dashboardGrid"></div>
+            <div class="dashboard-discovery" id="dashboardDiscovery">
+                <h3>Discover Yourself — Your Ikigai at a Glance</h3>
+                <div class="discovery-content" id="discoveryContent"></div>
+            </div>
+            <p class="dashboard-updated" id="dashboardUpdated"></p>
+        </section>
+
+        <!-- Summary / Result (legacy, can scroll from dashboard) -->
+        <section class="ikigai-summary-section" id="summarySection" hidden>
+            <h2>Your Ikigai at a Glance</h2>
+            <div class="summary-grid" id="summaryGrid"></div>
+            <div class="ikigai-statement" id="ikigaiStatement"></div>
+        </section>
+    </main>
+
+    <script src="ikigai.js"></script>
+</body>
+
+</html>

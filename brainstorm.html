@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Brainstorm – Life Document</title>
+    <meta name="author" content="Life Document">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="brainstorm.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body class="brainstorm-theme">
+    <!-- Header -->
+    <header class="brainstorm-header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">Life Document</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="main.html">Dashboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="learning.html">Learning</a></li>
+                    <li><a href="brainstorm.html" class="active">Brainstorm</a></li>
+                    <li><a href="ikigai.html">Ikigai</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="">Journal</a></li>
+                    <li><a href="">Tracker</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="brainstorm-page">
+        <section class="brainstorm-hero">
+            <div class="hero-icon">💡</div>
+            <h1>Brainstorm</h1>
+            <p>Capture ideas with date & time. Share via Gmail, Twitter, LinkedIn & more.</p>
+        </section>
+
+        <!-- New idea form -->
+        <div class="card brainstorm-form-card">
+            <h2>New idea</h2>
+            <p class="form-hint">Date & time are saved automatically when you add an idea.</p>
+            <div class="brainstorm-form">
+                <input type="text" id="ideaTitle" placeholder="Idea title..." class="input-title" maxlength="120">
+                <textarea id="ideaContent" placeholder="Write your idea here..." rows="5" class="input-content"></textarea>
+                <button type="button" class="btn-add-idea" onclick="addIdea()">Add idea</button>
+            </div>
+        </div>
+
+        <!-- Ideas list -->
+        <section class="brainstorm-list-section">
+            <h2 class="section-title">My ideas</h2>
+            <div class="ideas-grid" id="ideasGrid"></div>
+        </section>
+    </main>
+
+    <!-- Share modal (optional: share text in clipboard or open mail) -->
+    <div class="modal brainstorm-modal" id="shareModal">
+        <div class="modal-content brainstorm-modal-content">
+            <span class="close-btn" onclick="closeShareModal()">&times;</span>
+            <h2>Share this idea</h2>
+            <div class="share-buttons" id="shareButtons"></div>
+            <p class="share-copy-hint">Or copy to clipboard:</p>
+            <button type="button" class="btn-copy-full" onclick="copyCurrentShareText()">Copy full text</button>
+        </div>
+    </div>
+
+    <script src="brainstorm.js"></script>
+</body>
+
+</html>

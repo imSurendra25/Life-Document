@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Life Document Dashboard</title>
+    <meta name="author" content="Life Document">
+    <meta name="keyword" content="Dashboard, Habit Tracker, Learning, Journal">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">Life Document</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="main.html">Dashboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="learning.html">Learning</a></li>
+                    <li><a href="brainstorm.html">Brainstorm</a></li>
+                    <li><a href="ikigai.html">Ikigai</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="goals.html">Goals</a></li>
+                    <li><a href="languages.html">Languages</a></li>
+                    <li><a href="content-creation.html">Content Creation</a></li>
+                    <li><a href="business.html">Business</a></li>
+                    <li><a href="personal.html">Personal</a></li>
+                    
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Stats -->
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <h3>Days Left</h3>
+                    <p class="stat-value" id="daysLeft">365</p>
+                    <span class="stat-label">of 365 days</span>
+                </div>
+                <div class="stat-item">
+                    <h3>Live Time</h3>
+                    <p class="stat-value" id="liveTime">00:00:00</p>
+                    <span class="stat-label">Current time</span>
+                </div>
+            </div>
+
+            <!-- Progress Graphs -->
+            <div class="card progress-section">
+                <h3>Daily Progress</h3>
+                <div class="progress-chart" id="dailyProgress"></div>
+                <p class="progress-label" id="dailyPercentage">0%</p>
+            </div>
+
+            <div class="card progress-section">
+                <h3>Yearly Progress</h3>
+                <div class="progress-chart yearly" id="yearlyProgress"></div>
+                <p class="progress-label" id="yearlyPercentage">0%</p>
+            </div>
+
+            <!-- Dot Calendar (Year Overview) -->
+            <div class="card calendar-section">
+                <h3>Year Overview</h3>
+                <div class="dot-calendar" id="dotCalendar"></div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="content-area">
+            <!-- Affirmations Section -->
+            <div class="card affirmations-section">
+                <h2>Daily Affirmations</h2>
+                <div class="affirmation-tabs">
+                    <button class="tab-btn active" data-time="morning">🌅 Morning</button>
+                    <button class="tab-btn" data-time="afternoon">☀️ Afternoon</button>
+                    <button class="tab-btn" data-time="evening">🌆 Evening</button>
+                    <button class="tab-btn" data-time="dinner">🍽️ Dinner</button>
+                    <button class="tab-btn" data-time="night">🌙 Night</button>
+                </div>
+                <div class="affirmation-display" id="affirmationDisplay">
+                    <p id="affirmationText">Add your first affirmation...</p>
+                </div>
+                <div class="affirmation-input">
+                    <textarea id="affirmationInput" placeholder="Write your affirmation..." rows="3"></textarea>
+                    <button class="btn-primary" onclick="addAffirmation()">Add Affirmation</button>
+                </div>
+                <div class="affirmations-list" id="affirmationsList"></div>
+            </div>
+
+            <!-- Top Row: Habits & Skills -->
+            <div class="top-section">
+                <!-- Habit Tracker -->
+                <div class="card habit-tracker">
+                    <h2>Habits & Categories</h2>
+                    <div class="category-management">
+                        <div class="category-controls">
+                            <input type="text" id="habitCategoryInput" placeholder="New category..." class="input-small">
+                            <button class="btn-primary" onclick="addHabitCategory()">Add Category</button>
+                        </div>
+                        <div class="categories-list" id="habitCategories"></div>
+                    </div>
+                    <div class="habits-list" id="habitsList"></div>
+                    <div class="habit-input">
+                        <select id="habitCategory" class="input-small">
+                            <option value="">Select category...</option>
+                        </select>
+                        <input type="text" id="habitInput" placeholder="New habit..." class="input-small">
+                        <input type="time" id="habitTime" class="input-small">
+                        <button class="btn-primary" onclick="addHabit()">Add Habit</button>
+                    </div>
+                </div>
+
+                <!-- Skills List -->
+                <div class="card skills-section">
+                    <h2>My Skills</h2>
+                    <div class="skills-input">
+                        <input type="text" id="skillInput" placeholder="Add new skill..." class="input-small">
+                        <select id="skillLevel" class="input-small">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                        <button class="btn-primary" onclick="addSkill()">Add Skill</button>
+                    </div>
+                    <div class="skills-list" id="skillsList"></div>
+                </div>
+            </div>
+
+            <!-- Daily To-Do List -->
+            <div class="card todo-section">
+                <h2>Daily To-Do List</h2>
+                <div class="todo-input">
+                    <input type="text" id="todoInput" placeholder="Add new task..." class="input-large">
+                    <input type="time" id="todoTime" class="input-small">
+                    <button class="btn-primary" onclick="addTodo()">Add Task</button>
+                </div>
+                <div class="todo-items" id="todoList"></div>
+            </div>
+
+            <!-- Learning Courses -->
+            <div class="card learning-section">
+                <h2>Learning Courses</h2>
+                <div class="learning-input">
+                    <input type="text" id="courseInput" placeholder="Course name..." class="input-large">
+                    <input type="number" id="courseProgress" placeholder="Progress %" min="0" max="100" class="input-small">
+                    <button class="btn-primary" onclick="addCourse()">Add Course</button>
+                </div>
+                <div class="courses-list" id="coursesList"></div>
+            </div>
+
+            <!-- Journal with Multiple Categories -->
+            <div class="card journal-section">
+                <h2>Journal & Life Document</h2>
+                <div class="journal-category-management">
+                    <div class="category-controls">
+                        <input type="text" id="journalCategoryInput" placeholder="New journal category..." class="input-small">
+                        <button class="btn-primary" onclick="addJournalCategory()">Add Category</button>
+                    </div>
+                    <div class="journal-categories-list" id="journalCategories"></div>
+                </div>
+                <div class="journal-input">
+                    <select id="journalCategory" class="input-small">
+                        <option value="">Select category...</option>
+                    </select>
+                    <textarea id="journalInput" placeholder="Write your journal entry..." rows="4"></textarea>
+                    <button class="btn-primary" onclick="addJournalEntry()">Save Entry</button>
+                </div>
+                <div class="journal-entries" id="journalEntries"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Edit Habit Modal -->
+    <div class="modal" id="editHabitModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('editHabitModal')">&times;</span>
+            <h2>Edit Habit</h2>
+            <input type="text" id="editHabitInput" placeholder="Habit name..." class="input-large">
+            <input type="time" id="editHabitTime" class="input-small">
+            <button class="btn-primary" onclick="saveEditHabit()">Save</button>
+        </div>
+    </div>
+
+    <!-- Edit Journal Modal -->
+    <div class="modal" id="editJournalModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('editJournalModal')">&times;</span>
+            <h2>Edit Journal Entry</h2>
+            <textarea id="editJournalInput" placeholder="Edit entry..." rows="6"></textarea>
+            <button class="btn-primary" onclick="saveEditJournal()">Save</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

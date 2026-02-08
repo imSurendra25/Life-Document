@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Content Studio - Life Document</title>
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="content-creation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Life<span>Document</span> Creator</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="main.html">Dashboard</a>
+            <a href="blog.html">Blog</a>
+            <a href="content-creation.html" class="active">Content</a>
+        </div>
+    </nav>
+
+    <!-- Header Stats -->
+    <header class="content-header">
+        <div class="header-content">
+            <h1>Content Creation <span class="highlight">Studio</span></h1>
+            <p>From idea to posted. Manage your scripts, schedule, and analytics.</p>
+        </div>
+        <div class="header-stats">
+            <div class="stat-box">
+                <span id="statIdeas">0</span>
+                <label>Ideas</label>
+            </div>
+            <div class="stat-box">
+                <span id="statInProgress">0</span>
+                <label>In Progress</label>
+            </div>
+            <div class="stat-box">
+                <span id="statPosted">0</span>
+                <label>Posted</label>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-container">
+        
+        <!-- Quick Capture Section -->
+        <section class="capture-section">
+            <div class="card capture-card">
+                <h2><i class="fas fa-lightbulb"></i> Quick Idea Capture</h2>
+                <form id="ideaForm">
+                    <div class="form-row">
+                        <input type="text" id="ideaTitle" placeholder="What's your new content idea?" required>
+                        <select id="ideaPlatform" required>
+                            <!-- Platforms injected here -->
+                        </select>
+                        <select id="ideaType">
+                            <option value="Video">Video</option>
+                            <option value="Short/Reel">Short/Reel</option>
+                            <option value="Post">Post</option>
+                            <option value="Article">Article</option>
+                            <option value="Thread">Thread</option>
+                        </select>
+                        <button type="submit" class="btn-primary"><i class="fas fa-plus"></i> Add Idea</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Content Database -->
+        <section class="database-section">
+            <div class="controls-bar">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all" onclick="filterContent('all')">All</button>
+                    <button class="filter-btn" data-filter="idea" onclick="filterContent('idea')">Ideas</button>
+                    <button class="filter-btn" data-filter="scripting" onclick="filterContent('scripting')">Scripting</button>
+                    <button class="filter-btn" data-filter="posted" onclick="filterContent('posted')">Posted</button>
+                </div>
+                <div class="actions">
+                    <button class="btn-secondary" onclick="openPlatformModal()"><i class="fas fa-layer-group"></i> Manage Platforms</button>
+                </div>
+            </div>
+
+            <div class="content-grid" id="contentGrid">
+                <!-- Content Cards Injected Here -->
+            </div>
+            
+            <div id="emptyState" class="empty-state hidden">
+                <i class="fas fa-film"></i>
+                <p>No content found. Start creating!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Edit / Script Modal -->
+    <div class="modal" id="editorModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2 id="modalTitle">Edit Content</h2>
+                <button class="close-btn" onclick="closeEditorModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="editTitle" class="full-width">
+                </div>
+                <div class="form-row-split">
+                    <div class="form-group">
+                        <label>Platform</label>
+                        <select id="editPlatform"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="editStatus">
+                            <option value="Idea">Idea</option>
+                            <option value="Scripting">Scripting</option>
+                            <option value="Filming">Filming</option>
+                            <option value="Editing">Editing</option>
+                            <option value="Posted">Posted</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Script / Notes</label>
+                    <textarea id="editScript" rows="10" placeholder="Write your script, hashtags, or caption here..."></textarea>
+                </div>
+                <div class="form-row-split">
+                    <div class="form-group">
+                        <label>Planned Date</label>
+                        <input type="datetime-local" id="editPlannedDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Posted Date (Final)</label>
+                        <input type="datetime-local" id="editPostedDate">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-danger" onclick="deleteContent()">Delete</button>
+                    <button class="btn-primary" onclick="saveContent()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="content-creation.js"></script>
+</body>
+</html>

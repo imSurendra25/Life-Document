@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Project Hub - Life Document</title>
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Life<span>Document</span> Projects</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="main.html">Dashboard</a>
+            <a href="blog.html">Blog</a>
+            <a href="projects.html" class="active">Projects</a>
+        </div>
+        <div class="live-clock" id="liveClock">00:00:00</div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="projects-header">
+        <div class="header-content">
+            <h1>My Creative <span class="highlight">Portfolio</span></h1>
+            <p>Manage your Web Dev, Design, and Content files in one place.</p>
+            <div class="header-stats">
+                <div class="stat-box">
+                    <span id="totalProjects">0</span>
+                    <label>Total Projects</label>
+                </div>
+                <div class="stat-box">
+                    <span id="totalCategories">0</span>
+                    <label>Categories</label>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Controls & Filters -->
+    <section class="controls-section">
+        <div class="search-filter">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search projects...">
+            </div>
+            <div class="filter-tabs" id="categoryFilters">
+                <button class="filter-btn active" data-cat="all">All</button>
+                <!-- Categories injected here -->
+            </div>
+        </div>
+        <div class="action-buttons">
+            <button class="btn btn-secondary" onclick="openCategoryModal()">
+                <i class="fas fa-tags"></i> Manage Categories
+            </button>
+            <button class="btn btn-primary" onclick="openProjectModal()">
+                <i class="fas fa-cloud-upload-alt"></i> Upload Project
+            </button>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <main class="projects-container">
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Projects injected here -->
+        </div>
+        <div id="emptyState" class="empty-state hidden">
+            <i class="fas fa-folder-open"></i>
+            <h3>No projects found</h3>
+            <p>Upload your first project to get started!</p>
+        </div>
+    </main>
+
+    <!-- Add/Edit Project Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Upload Project</h2>
+                <button class="close-btn" onclick="closeProjectModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="projectForm">
+                    <input type="hidden" id="projectId">
+                    <div class="form-group">
+                        <label>Project Title</label>
+                        <input type="text" id="pTitle" required placeholder="e.g., E-Commerce Website">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="pCategory" required>
+                            <!-- Options injected here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>File URL / Link</label>
+                        <input type="url" id="pLink" placeholder="https://github.com/..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Thumbnail Image URL (Optional)</label>
+                        <input type="url" id="pImage" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="pDesc" rows="3" placeholder="What is this project about?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Save Project</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manage Categories Modal -->
+    <div class="modal" id="categoryModal">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <h2>Manage Categories</h2>
+                <button class="close-btn" onclick="closeCategoryModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="add-cat-row">
+                    <input type="text" id="newCatName" placeholder="New Category Name">
+                    <button class="btn btn-primary" onclick="addCategory()">Add</button>
+                </div>
+                <ul class="category-list" id="categoryList">
+                    <!-- List injected here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="projects.js"></script>
+</body>
+</html>
